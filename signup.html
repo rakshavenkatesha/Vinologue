@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Wine Quality Tasting</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #7b2d26; /* Deep wine color */
+        }
+        .signup-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: center;
+        }
+        input[type="text"], input[type="password"], input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #a33d32;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #922c27;
+        }
+        .password-hint {
+            color: red;
+            margin-top: 5px;
+            font-size: 0.8em;
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-box">
+        <form id="signupForm">
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            <input type="number" id="age" name="age" placeholder="Enter your age" required>
+            <input type="text" id="address" name="address" placeholder="Enter your address" required minlength="15">
+            <input type="password" id="password" name="password" placeholder="Password" required oninput="updatePasswordHint()">
+            <div class="password-hint" id="passwordHint">Minimum 8 characters, include both uppercase and lowercase characters.</div>
+            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required oninput="checkPasswordMatch()">
+            <button type="button" onclick="submitForm()">Sign Up</button>
+        </form>
+        <div class="message"></div>
+    </div>
+
+    <script>
+        function updatePasswordHint() {
+            const password = document.getElementById('password');
+            const hint = document.getElementById('passwordHint');
+            const rules = {
+                length: password.value.length >= 8,
+                upper: /[A-Z]/.test(password.value),
+                lower: /[a-z]/.test(password.value)
+            };
+
+            let messages = [];
+            if (!rules.length) messages.push("Minimum 8 characters");
+            if (!rules.upper) messages.push("Use Uppercase characters");
+            if (!rules.lower) messages.push("Use Lowercase characters");
+
+            if (messages.length > 0) {
+                hint.style.display = 'block';
+                hint.textContent = messages.join(', ') + '.';
+            } else {
+                hint.style.display = 'none';
+            }
+        }
+
+        function checkPasswordMatch() {
+            const password = document.getElementById('password');
+            const confirm_password = document.getElementById('confirm_password');
+            const message = document.querySelector('.message');
+            if (confirm_password.value === "") {
+                message.textContent = "";
+            } else if (password.value !== confirm_password.value) {
+                message.textContent = 'Passwords do not match';
+                message.style.color = 'red';
+            } else {
+                message.textContent = 'Passwords match';
+                message.style.color = 'green';
+            }
+        }
+
+        function submitForm() {
+            var form = document.getElementById('signupForm');
+            if (form.checkValidity() && document.getElementById('password').value === document.getElementById('confirm_password').value) {
+                document.querySelector('.message').innerHTML = '<p>Successfully signed up!</p><a href="/login">Go back to login page</a>';
+                document.querySelector('.message').style.color = 'black';
+            } else {
+                form.reportValidity();
+            }
+        }
+    </script>
+</body>
+</html>

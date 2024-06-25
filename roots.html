@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wine Aging Chart</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    h1 {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    
+    p {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+    
+    th {
+      text-align: left;
+      font-weight: bold;
+    }
+    
+    .red-wine {
+      background-color: #f8f0e6;
+      color: #990000;
+    }
+    
+    .red-wine th {
+      background-color: #c71546;
+      color: white;
+    }
+    
+    .white-wine {
+      background-color: #e6e6e6;
+      color: #000000;
+    }
+    
+    .white-wine th {
+      background-color: #f5ecce;
+      color: #996633;
+    }
+  </style>
+</head>
+<body>
+  <h1>Wine Aging Chart</h1>
+  
+  <p>Wine aging is a critical process that enhances the complexity, depth, and flavor of wines. As wines age, chemical reactions occur among sugars, acids, and phenolic compounds that change the taste, aroma, and mouthfeel. Red wines typically develop more nuanced and tertiary aromas like leather and spice, while white wines gain a richer texture and honeyed characteristics. Proper aging can transform a good wine into an exceptional one, making the aging process an art that wine enthusiasts and collectors value highly.</p>
+  
+  <table class="red-wine">
+    <caption>How Red Wines Age</caption>
+    <thead>
+      <tr>
+        <th scope="col">Wine Type</th>
+        <th scope="col">Initial Characteristics (Young)</th>
+        <th scope="col">Aged Characteristics (10 years)</th>
+        <th scope="col">Aged Characteristics (20+ years)</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody id="redWineTableBody">
+      <tr>
+        <td style="text-align: left;">Cabernet Sauvignon (Bordeaux)</td>
+        <td>Bold tannins, blackcurrant, plum, high acidity</td>
+        <td>Softer tannins, dried cherry, leather, lower acidity</td>
+        <td>Velvety texture, tertiary aromas (cigar box, cedar), subtle fruit</td>
+        <td><button onclick="deleteRow('redWineTableBody', this)">Delete</button></td>
+      </tr>
+      <tr>
+        <td style="text-align: left;">Pinot Noir (Burgundy)</td>
+        <td>Light-bodied, bright cherry, raspberry, floral</td>
+        <td>Silky texture, earthy (mushroom, truffle), spice notes</td>
+        <td>Delicate fruit, complex aromas, fading color</td>
+        <td><button onclick="deleteRow('redWineTableBody', this)">Delete</button></td>
+      </tr>
+      <tr>
+        <td style="text-align: left;">Merlot</td>
+        <td>Soft tannins, plum, black cherry, chocolate</td>
+        <td>Rounder texture, dried fruit, tobacco, spice</td>
+        <td>Softened tannins, earthy notes, complex tertiary aromas</td>
+        <td><button onclick="deleteRow('redWineTableBody', this)">Delete</button></td>
+      </tr>
+      <tr>
+        <td style="text-align: left;">Malbec</td>
+        <td>Plum, blackberry, velvety tannins</td>
+        <td>Softened tannins, dried fruit, earthy notes</td>
+        <td>Smooth texture, complex aromas (tobacco, cocoa)</td>
+        <td><button onclick="deleteRow('redWineTableBody', this)">Delete</button></td>
+      </tr>
+      <tr>
+        <td style="text-align: left;">Zinfandel</td>
+        <td>Jammy fruit, spice, medium tannins</td>
+        <td>Silky texture, dried fruit, pepper</td>
+        <td>Soft tannins, complex spice, earthy notes</td>
+        <td><button onclick="deleteRow('redWineTableBody', this)">Delete</button></td>
+      </tr>
+      <tr>
+        <td style="text-align: left;">Tempranillo</td>
+        <td>Cherry, plum, leather, medium tannins</td>
+        <td>Smoother tannins, dried fruit, tobacco</td>
+        <td>Rich texture, complex aromas (earth, spice)</td>
+        <td><button onclick="deleteRow('redWineTableBody', this)">Delete</button></td>
+      </tr>
+      <tr>
+        <td style="text-align: left;">Grenache</td>
+        <td>Red fruit, spicy, medium tannins</td>
+        <td>Silky texture, dried cherry, herbal notes</td>
+        <td>Smooth texture, earthy, complex spice</td>
+        <td><button onclick="deleteRow('redWineTableBody', this)">Delete</button></td>
+      </tr>
+      <tr>
+        <td style="text-align: left;">Nebbiolo</td>
+        <td>High tannins, cherry, rose, tar</td>
+        <td>Smoother tannins, dried rose, leather</td>
+        <td>Velvety texture, tertiary aromas (truffle, spice)</td>
+        <td><button onclick="deleteRow('redWineTableBody', this)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <table class="white-wine">
+    <caption>How White Wines Age</caption>
+    <thead>
+      <tr>
+        <th scope="col">Wine Type</th>
+        <th scope="col">Initial Characteristics (Young)</th>
+        <th scope="col">Aged Characteristics (10 years)</th>
+        <th scope="col">Aged Characteristics (20+ years)</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody id="whiteWineTableBody">
+      <tr>
+        <td style="text-align: left;">Chardonnay (Unoaked)</td>
+        <td>Crisp acidity, citrus (lemon, grapefruit), green apple</td>
+        <td>Richer texture, mineral notes, possible buttery character</td>
+        <td>Honeyed character, fading fruit, lower acidity</td>
+        <td><button onclick="deleteRow('whiteWineTableBody', this)">Delete</button></td>
+      </tr>
+      <tr>
+        <td style="text-align: left;">Chardonnay (Oaked)</td>
+        <td>Richer texture, vanilla, butter, citrus notes</td>
+        <td>Creamier texture, pronounced oak, nutty flavors</td>
+        <td>Less fruit, tertiary aromas (honey, caramel), lower acidity</td>
+        <td><button onclick="deleteRow('whiteWineTableBody', this)">Delete</button></td>
+      </tr>
+      <tr>
+        <td style="text-align: left;">Riesling</td>
+        <td>High acidity, green apple, lime, floral</td>
+        <td>Petrol notes, honey, complex fruit</td>
+        <td>Rich texture, complex tertiary aromas (honey, petrol)</td>
+        <td><button onclick="deleteRow('whiteWineTableBody', this)">Delete</button></td>
+      </tr>
+      <tr>
+        <td style="text-align: left;">Sauvignon Blanc</td>
+        <td>Crisp acidity, citrus, green bell pepper</td>
+        <td>Softer acidity, tropical fruit, mineral notes</td>
+        <td>Rich texture, tertiary aromas (honey, nutty)</td>
+        <td><button onclick="deleteRow('whiteWineTableBody', this)">Delete</button></td>
+      </tr>
+      <tr>
+        <td style="text-align: left;">Viognier</td>
+        <td>Medium acidity, apricot, floral, peach</td>
+        <td>Richer texture, honeyed notes, dried apricot</td>
+        <td>Rich texture, complex aromas (honey, spice)</td>
+        <td><button onclick="deleteRow('whiteWineTableBody', this)">Delete</button></td>
+      </tr>
+      <tr>
+        <td style="text-align: left;">Chenin Blanc</td>
+        <td>High acidity, green apple, quince, floral</td>
+        <td>Honeyed notes, complex fruit, mineral</td>
+        <td>Rich texture, complex tertiary aromas (honey, nutty)</td>
+        <td><button onclick="deleteRow('whiteWineTableBody', this)">Delete</button></td>
+    </tr>
+    <tr>
+        <td style="text-align: left;">Grüner Veltliner</td>
+        <td>High acidity, green pepper, lime, white pepper</td>
+        <td>Richer texture, honeyed notes, dried fruit</td>
+        <td>Rich texture, complex tertiary aromas (honey, spice)</td>
+        <td><button onclick="deleteRow('whiteWineTableBody', this)">Delete</button></td>
+      </tr>
+      <tr>
+        <td style="text-align: left;">Albariño</td>
+        <td>High acidity, citrus, green apple, floral</td>
+        <td>Softer acidity, mineral notes, richer texture</td>
+        <td>Honeyed character, fading fruit, complex aromas</td>
+        <td><button onclick="deleteRow('whiteWineTableBody', this)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    // Function to add a row to the specified table body with user input
+    function addRow(tableId) {
+      var wineType = prompt("Enter Wine Type:");
+      var initialCharacteristics = prompt("Enter Initial Characteristics (Young):");
+      var agedCharacteristics10 = prompt("Enter Aged Characteristics (10 years):");
+      var agedCharacteristics20 = prompt("Enter Aged Characteristics (20+ years):");
+
+      if (wineType && initialCharacteristics && agedCharacteristics10 && agedCharacteristics20) {
+        var tableBody = document.getElementById(tableId);
+        var newRow = tableBody.insertRow();
+
+        var wineTypeCell = newRow.insertCell(0);
+        wineTypeCell.textContent = wineType;
+
+        var initialCharacteristicsCell = newRow.insertCell(1);
+        initialCharacteristicsCell.textContent = initialCharacteristics;
+
+        var agedCharacteristics10Cell = newRow.insertCell(2);
+        agedCharacteristics10Cell.textContent = agedCharacteristics10;
+
+        var agedCharacteristics20Cell = newRow.insertCell(3);
+        agedCharacteristics20Cell.textContent = agedCharacteristics20;
+
+        var actionCell = newRow.insertCell(4);
+        var deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = function() {
+          deleteRow(tableId, this);
+        };
+        actionCell.appendChild(deleteButton);
+      } else {
+        alert("All fields must be filled out.");
+      }
+    }
+
+    // Function to delete a row from the specified table body
+    function deleteRow(tableId, button) {
+      var rowIndex = button.parentNode.parentNode.rowIndex;
+      document.getElementById(tableId).deleteRow(rowIndex - 1);
+    }
+  </script>
+  
+  <!-- Buttons to add new rows -->
+  <button onclick="addRow('redWineTableBody')">Add Row to Red Wine Table</button>
+  <button onclick="addRow('whiteWineTableBody')">Add Row to White Wine Table</button>
+</body>
+</html>

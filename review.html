@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Wine</title>
+    <link rel="stylesheet" href="explore.css">
+</head>
+<body>
+    <header>
+        <h1>Review Wine</h1>
+    </header>
+    <main>
+        <h2 id="wineName"></h2>
+        <form>
+            <label for="review">Your Review:</label><br>
+            <textarea id="review" rows="4" cols="50"></textarea><br><br>
+            <label for="rating">Rating:</label><br>
+            <select id="rating">
+                <option value="5">★★★★★</option>
+                <option value="4">★★★★☆</option>
+                <option value="3">★★★☆☆</option>
+                <option value="2">★★☆☆☆</option>
+                <option value="1">★☆☆☆☆</option>
+            </select><br><br>
+            <button type="submit">Submit Review</button>
+        </form>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const wineName = urlParams.get('wine');
+            document.getElementById('wineName').textContent = wineName;
+        });
+    </script>
+</body>
+</html>
